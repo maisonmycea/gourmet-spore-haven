@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods';
+  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'forest-blend';
   category: 'fresh' | 'dried' | 'transformed';
   price: number;
   unit: 'kg' | '100g' | 'piece';
@@ -188,31 +188,32 @@ export const products: Product[] = [
     featured: true
   },
   {
-    id: 'blue-oyster-dried',
-    name: 'Pleurote Bleue Séchée',
-    variety: 'blue-oyster',
+    id: 'forest-blend-dried',
+    name: 'Mélange Forestier Séché',
+    variety: 'forest-blend',
     category: 'dried',
-    price: 8.90,
+    price: 12.90,
     unit: '100g',
-    image: '/mushroom-blue-oyster.jpg',
-    description: 'Nos pleurotes bleues séchées conservent toute leur saveur intense. Parfaites pour enrichir vos bouillons, soupes et sauces.',
+    image: '/mushroom-forest-blend.jpg',
+    description: 'Notre mélange forestier premium réunit les meilleures variétés de champignons séchés. Un assemblage savant pour des saveurs boisées authentiques et une profondeur umami incomparable.',
     benefits: [
+      'Mélange équilibré de 5 variétés',
       'Conservation longue durée',
-      'Saveur concentrée',
-      'Facile à réhydrater',
-      'Idéal pour les stocks'
+      'Saveurs forestières intenses',
+      'Polyvalence culinaire'
     ],
     culinaryTips: [
-      'Réhydrater 20 min dans l\'eau tiède',
-      'Parfaite pour les risottos',
-      'Excellente en poudre pour assaisonnement'
+      'Réhydrater 30 min dans l\'eau chaude',
+      'Parfait pour risottos et sauces',
+      'Idéal en bouillon ou soupe'
     ],
     nutritionalInfo: {
-      protein: '10.5g/100g',
-      fiber: '7.3g/100g',
-      vitamins: ['B1', 'B2', 'B3', 'D']
+      protein: '11g/100g',
+      fiber: '8g/100g',
+      vitamins: ['B1', 'B2', 'B3', 'D', 'E']
     },
-    inStock: true
+    inStock: true,
+    featured: true
   },
   {
     id: 'mushroom-powder',
