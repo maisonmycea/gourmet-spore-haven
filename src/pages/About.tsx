@@ -182,7 +182,7 @@ const About = () => {
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-gradient-hero">
+      <section className="py-20 bg-gradient-to-br from-stone-800 via-stone-900 to-slate-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -192,10 +192,10 @@ const About = () => {
             className="max-w-4xl mx-auto"
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
-              <span className="inline-block text-primary-foreground/70 font-medium mb-4">
+              <span className="inline-block text-blue-300 font-medium mb-4">
                 Notre Savoir-Faire
               </span>
-              <h2 className="font-serif text-4xl font-bold text-primary-foreground">
+              <h2 className="font-serif text-4xl font-bold text-white">
                 Du Substrat à Votre Assiette
               </h2>
             </motion.div>
@@ -210,16 +210,16 @@ const About = () => {
                 <motion.div
                   key={item.step}
                   variants={fadeInUp}
-                  className="flex items-start gap-6 p-6 bg-primary-foreground/5 backdrop-blur-sm rounded-2xl"
+                  className="flex items-start gap-6 p-6 bg-white/10 backdrop-blur-sm rounded-2xl"
                 >
-                  <span className="font-serif text-3xl font-bold text-accent">
+                  <span className="font-serif text-3xl font-bold text-blue-300">
                     {item.step}
                   </span>
                   <div>
-                    <h3 className="font-serif text-xl font-semibold text-primary-foreground mb-2">
+                    <h3 className="font-serif text-xl font-semibold text-white mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-primary-foreground/70">
+                    <p className="text-white/80">
                       {item.desc}
                     </p>
                   </div>
