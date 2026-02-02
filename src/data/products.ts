@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte';
+  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods';
   category: 'fresh' | 'dried' | 'transformed';
   price: number;
   unit: 'kg' | '100g' | 'piece';
@@ -127,6 +127,62 @@ export const products: Product[] = [
       protein: '2.4g/100g',
       fiber: '1.8g/100g',
       vitamins: ['B1', 'B2', 'B3', 'D', 'E']
+    },
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'king-oyster-fresh',
+    name: 'Pleurote Royale Fraîche',
+    variety: 'king-oyster',
+    category: 'fresh',
+    price: 32.90,
+    unit: 'kg',
+    image: '/mushroom-king-oyster.jpg',
+    description: 'La pleurote royale, aussi appelée King Oyster, est le roi des pleurotes. Sa texture ferme et charnue rappelle celle du cèpe, avec une saveur umami profonde et une polyvalence culinaire exceptionnelle.',
+    benefits: [
+      'Texture charnue unique',
+      'Riche en ergothionéine antioxydante',
+      'Source de vitamine D',
+      'Excellente digestibilité'
+    ],
+    culinaryTips: [
+      'Trancher en médaillons et griller comme un steak',
+      'Parfaite pour remplacer les coquilles Saint-Jacques',
+      'Excellente rôtie au four avec herbes'
+    ],
+    nutritionalInfo: {
+      protein: '3.6g/100g',
+      fiber: '2.2g/100g',
+      vitamins: ['B1', 'B2', 'B5', 'D']
+    },
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'chicken-woods-fresh',
+    name: 'Poulet des Bois Frais',
+    variety: 'chicken-woods',
+    category: 'fresh',
+    price: 38.90,
+    unit: 'kg',
+    image: '/mushroom-chicken-woods.jpg',
+    description: 'Le polypore soufré, surnommé "Poulet des Bois", est un champignon sauvage spectaculaire aux couleurs orange vif. Sa texture et son goût rappellent étonnamment le poulet, parfait pour les plats végétariens.',
+    benefits: [
+      'Alternative végétale au poulet',
+      'Riche en protéines',
+      'Source de bêta-glucanes',
+      'Propriétés antimicrobiennes'
+    ],
+    culinaryTips: [
+      'Paner et frire comme des nuggets',
+      'Parfait en ragoût ou curry',
+      'Excellent émincé dans les tacos'
+    ],
+    nutritionalInfo: {
+      protein: '4.2g/100g',
+      fiber: '3.1g/100g',
+      vitamins: ['B2', 'B3', 'C', 'D']
     },
     inStock: true,
     featured: true
