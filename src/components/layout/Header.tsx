@@ -49,7 +49,7 @@ export const Header = () => {
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled
           ? 'bg-background/95 backdrop-blur-md shadow-soft'
-          : 'bg-transparent'
+          : 'bg-black/30 backdrop-blur-sm'
       )}
     >
       <div className="container mx-auto px-4">
@@ -58,11 +58,20 @@ export const Header = () => {
           <Link to="/" className="flex items-center gap-2 group">
             <motion.div
               whileHover={{ rotate: 15 }}
-              className="w-10 h-10 bg-primary rounded-full flex items-center justify-center"
+              className={cn(
+                "w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+                isScrolled ? "bg-primary" : "bg-white"
+              )}
             >
-              <span className="text-primary-foreground font-serif text-xl">S</span>
+              <span className={cn(
+                "font-serif text-xl transition-colors",
+                isScrolled ? "text-primary-foreground" : "text-stone-800"
+              )}>S</span>
             </motion.div>
-            <span className="font-serif text-2xl font-semibold text-foreground group-hover:text-accent transition-colors">
+            <span className={cn(
+              "font-serif text-2xl font-semibold transition-colors",
+              isScrolled ? "text-foreground group-hover:text-accent" : "text-white group-hover:text-white/80"
+            )}>
               Spores Expert
             </span>
           </Link>
@@ -79,7 +88,10 @@ export const Header = () => {
                 {link.children ? (
                   <button
                     className={cn(
-                      'flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors rounded-lg hover:bg-secondary/50'
+                      'flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg',
+                      isScrolled 
+                        ? 'text-foreground/80 hover:text-foreground hover:bg-secondary/50'
+                        : 'text-white/90 hover:text-white hover:bg-white/10'
                     )}
                   >
                     {link.label}
@@ -90,9 +102,13 @@ export const Header = () => {
                     to={link.href!}
                     className={cn(
                       'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
-                      location.pathname === link.href
-                        ? 'text-accent bg-accent/10'
-                        : 'text-foreground/80 hover:text-foreground hover:bg-secondary/50'
+                      isScrolled
+                        ? location.pathname === link.href
+                          ? 'text-accent bg-accent/10'
+                          : 'text-foreground/80 hover:text-foreground hover:bg-secondary/50'
+                        : location.pathname === link.href
+                          ? 'text-white bg-white/20'
+                          : 'text-white/90 hover:text-white hover:bg-white/10'
                     )}
                   >
                     {link.label}
@@ -127,13 +143,23 @@ export const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className={cn(
+                "hidden sm:flex",
+                !isScrolled && "text-white hover:text-white hover:bg-white/10"
+              )}
+            >
               <User className="w-5 h-5" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="relative"
+              className={cn(
+                "relative",
+                !isScrolled && "text-white hover:text-white hover:bg-white/10"
+              )}
               onClick={toggleCart}
             >
               <ShoppingBag className="w-5 h-5" />
@@ -150,7 +176,10 @@ export const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className={cn(
+                "lg:hidden",
+                !isScrolled && "text-white hover:text-white hover:bg-white/10"
+              )}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

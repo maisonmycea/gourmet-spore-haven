@@ -64,7 +64,7 @@ const Index = () => {
             alt="Champignons gourmets premium"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/60 to-foreground/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
         </div>
 
         {/* Content */}
@@ -77,25 +77,25 @@ const Index = () => {
           >
             <motion.span
               variants={fadeInUp}
-              className="inline-block px-4 py-2 bg-accent/20 backdrop-blur-sm rounded-full text-accent-foreground text-sm font-medium mb-6"
+              className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6"
             >
               ✨ L'excellence des champignons gourmets
             </motion.span>
 
             <motion.h1
               variants={fadeInUp}
-              className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-background leading-tight mb-6"
+              className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
             >
               Saveurs
               <br />
-              <span className="text-mushroom-pink">Extraordinaires</span>
+              <span className="text-pink-300">Extraordinaires</span>
               <br />
               de la Nature
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-background/80 text-lg md:text-xl leading-relaxed mb-8 max-w-xl"
+              className="text-white/90 text-lg md:text-xl leading-relaxed mb-8 max-w-xl"
             >
               Découvrez notre collection exclusive de champignons gourmets cultivés 
               avec passion. Pleurotes colorées, crinière de lion... Des saveurs 
@@ -112,7 +112,7 @@ const Index = () => {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </Button>
-              <Button variant="heroOutline" size="xl" className="text-background border-background hover:bg-background hover:text-foreground" asChild>
+              <Button variant="heroOutline" size="xl" className="text-white border-white/80 hover:bg-white hover:text-foreground" asChild>
                 <Link to="/a-propos">Notre savoir-faire</Link>
               </Button>
             </motion.div>
@@ -129,9 +129,9 @@ const Index = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-6 h-10 border-2 border-background/50 rounded-full flex items-start justify-center p-2"
+            className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2"
           >
-            <motion.div className="w-1.5 h-1.5 bg-background rounded-full" />
+            <motion.div className="w-1.5 h-1.5 bg-white rounded-full" />
           </motion.div>
         </motion.div>
       </section>
@@ -292,7 +292,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-hero">
+      <section className="py-24 bg-gradient-to-br from-stone-800 via-stone-900 to-slate-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -303,7 +303,7 @@ const Index = () => {
           >
             <motion.h2
               variants={fadeInUp}
-              className="font-serif text-4xl md:text-5xl font-bold text-primary-foreground mb-6"
+              className="font-serif text-4xl md:text-5xl font-bold text-white mb-6"
             >
               Prêt à Sublimer
               <br />
@@ -311,7 +311,7 @@ const Index = () => {
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-primary-foreground/80 text-lg mb-8"
+              className="text-white/85 text-lg mb-8"
             >
               Rejoignez des centaines de gastronomes et restaurateurs 
               qui font confiance à Spores Expert.
@@ -320,7 +320,7 @@ const Index = () => {
               <Button variant="secondary" size="xl" asChild>
                 <Link to="/boutique">Commander maintenant</Link>
               </Button>
-              <Button variant="heroOutline" size="xl" className="text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+              <Button variant="heroOutline" size="xl" className="text-white border-white/80 hover:bg-white hover:text-foreground" asChild>
                 <Link to="/contact">Nous contacter</Link>
               </Button>
             </motion.div>
