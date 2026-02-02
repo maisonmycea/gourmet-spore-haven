@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Leaf, Award, Truck } from 'lucide-react';
+import { ArrowRight, Leaf, Award, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import heroImage from '@/assets/hero-mushrooms.jpg';
 import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
 import yellowOyster from '@/assets/mushroom-yellow-oyster.jpg';
 import lionsMane from '@/assets/mushroom-lions-mane.jpg';
+import kingOyster from '@/assets/mushroom-king-oyster.jpg';
+import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
 import { ProductCard } from '@/components/products/ProductCard';
 import { getFeaturedProducts } from '@/data/products';
 
@@ -30,6 +33,8 @@ const varieties = [
   { name: 'Pleurote Rose', image: pinkOyster, color: 'bg-mushroom-pink/20' },
   { name: 'Pleurote Jaune', image: yellowOyster, color: 'bg-mushroom-yellow/20' },
   { name: 'Crinière de Lion', image: lionsMane, color: 'bg-mushroom-cream' },
+  { name: 'Pleurote Royale', image: kingOyster, color: 'bg-amber-100' },
+  { name: 'Poulet des Bois', image: chickenWoods, color: 'bg-orange-100' },
 ];
 
 const benefits = [
@@ -52,7 +57,16 @@ const benefits = [
 
 const Index = () => {
   const featuredProducts = getFeaturedProducts();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const visibleCount = 4;
+  const maxSlide = varieties.length - visibleCount;
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [maxSlide]);
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -169,33 +183,73 @@ const Index = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {varieties.map((variety) => (
-              <motion.div
-                key={variety.name}
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="group cursor-pointer"
+          <div className="relative">
+            {/* Carousel Navigation */}
+            <div className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-10">
+              <button
+                onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
+                disabled={currentSlide === 0}
+                className="p-2 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                <div className={`${variety.color} rounded-2xl p-4 mb-4 aspect-square overflow-hidden`}>
-                  <img
-                    src={variety.image}
-                    alt={variety.name}
-                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="font-serif text-lg font-semibold text-center text-foreground group-hover:text-accent transition-colors">
-                  {variety.name}
-                </h3>
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-10">
+              <button
+                onClick={() => setCurrentSlide(Math.min(maxSlide, currentSlide + 1))}
+                disabled={currentSlide >= maxSlide}
+                className="p-2 rounded-full bg-white shadow-lg hover:bg-accent hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Carousel Container */}
+            <div className="overflow-hidden">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                variants={staggerContainer}
+                className="flex gap-6 transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentSlide * (100 / visibleCount + 2.4)}%)` }}
+              >
+                {varieties.map((variety) => (
+                  <motion.div
+                    key={variety.name}
+                    variants={fadeInUp}
+                    whileHover={{ y: -10 }}
+                    className="group cursor-pointer flex-shrink-0"
+                    style={{ width: `calc(${100 / visibleCount}% - ${(6 * (visibleCount - 1)) / visibleCount}px)` }}
+                  >
+                    <div className={`${variety.color} rounded-2xl p-4 mb-4 aspect-square overflow-hidden`}>
+                      <img
+                        src={variety.image}
+                        alt={variety.name}
+                        className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <h3 className="font-serif text-lg font-semibold text-center text-foreground group-hover:text-accent transition-colors">
+                      {variety.name}
+                    </h3>
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
+            </div>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: maxSlide + 1 }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    currentSlide === idx ? 'w-8 bg-accent' : 'bg-muted-foreground/30'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
