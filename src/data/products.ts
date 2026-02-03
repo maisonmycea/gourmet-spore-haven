@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'forest-blend';
+  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'forest-blend' | 'duxelles' | 'marinade';
   category: 'fresh' | 'dried' | 'transformed';
   price: number;
   unit: 'kg' | '100g' | 'piece';
@@ -14,6 +14,7 @@ export interface Product {
     fiber: string;
     vitamins: string[];
   };
+  ingredients?: string[];
   inStock: boolean;
   featured?: boolean;
 }
@@ -241,6 +242,74 @@ export const products: Product[] = [
       vitamins: ['B1', 'B2', 'B3', 'D', 'E']
     },
     inStock: true
+  },
+  {
+    id: 'duxelles-truffee',
+    name: 'Duxelles Truffée',
+    variety: 'duxelles',
+    category: 'transformed',
+    price: 24.90,
+    unit: 'piece',
+    image: '/mushroom-forest-blend.jpg',
+    description: 'Une préparation raffinée de champignons sauvages sublimée par la truffe d\'été. Un condiment d\'exception pour vos créations gastronomiques.',
+    benefits: [
+      'Saveur truffe intense',
+      'Prêt à l\'emploi',
+      'Ingrédients premium',
+      'Polyvalence culinaire'
+    ],
+    culinaryTips: [
+      'Garnir des feuilletés ou vol-au-vents',
+      'Tartiner sur des crostinis',
+      'Accompagner viandes et poissons'
+    ],
+    nutritionalInfo: {
+      protein: '4g/100g',
+      fiber: '3g/100g',
+      vitamins: ['B2', 'B3', 'D']
+    },
+    ingredients: [
+      'Champignons sauvages',
+      'Truffe d\'été',
+      'Huile d\'olive',
+      'Sel de Guérande'
+    ],
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'marinade-forestiere',
+    name: 'Marinade Forestière',
+    variety: 'marinade',
+    category: 'transformed',
+    price: 16.90,
+    unit: 'piece',
+    image: '/mushroom-forest-blend.jpg',
+    description: 'Un mélange aromatique de champignons séchés, sucre d\'érable et huile d\'olive. Parfait pour mariner viandes, légumes et tofu.',
+    benefits: [
+      'Saveur érable unique',
+      'Ingrédients naturels',
+      'Facile à utiliser',
+      'Conservation optimale'
+    ],
+    culinaryTips: [
+      'Mariner viandes avant cuisson',
+      'Assaisonner légumes grillés',
+      'Parfumer le tofu ou tempeh'
+    ],
+    nutritionalInfo: {
+      protein: '3g/100g',
+      fiber: '5g/100g',
+      vitamins: ['B1', 'B2', 'D']
+    },
+    ingredients: [
+      'Mélange de champignons séchés',
+      'Sucre d\'érable',
+      'Huile d\'olive',
+      'Sel'
+    ],
+    inStock: true,
+    featured: true
   }
 ];
 
