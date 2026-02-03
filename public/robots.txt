@@ -1,8 +1,13 @@
+# Spores Expert - Champignons Gourmets Premium
+# https://www.sporesexpert.ca
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +17,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Crawl-delay: 2
+
+# Sitemap location
+Sitemap: https://www.sporesexpert.ca/sitemap.xml

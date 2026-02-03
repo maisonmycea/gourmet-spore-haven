@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Leaf, Award, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { SEOHead } from '@/components/seo/SEOHead';
 import heroImage from '@/assets/hero-mushrooms.jpg';
 import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
@@ -68,7 +69,13 @@ const Index = () => {
     return () => clearInterval(timer);
   }, [maxSlide]);
   return (
-    <div className="overflow-hidden">
+    <>
+      <SEOHead 
+        title="Spores Expert | Champignons Gourmets Premium au Québec"
+        description="Découvrez notre collection exclusive de champignons gourmets cultivés avec passion. Pleurotes colorées, crinière de lion, poulet des bois. Qualité artisanale, fraîcheur garantie à Sainte-Lucie-des-Laurentides."
+        url="https://www.sporesexpert.ca/"
+      />
+      <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         {/* Background Image */}
@@ -381,7 +388,8 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
