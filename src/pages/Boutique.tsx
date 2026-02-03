@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { products } from '@/data/products';
 import { ProductCard } from '@/components/products/ProductCard';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,7 +20,13 @@ const staggerContainer = {
 
 const Boutique = () => {
   return (
-    <div className="pt-24 pb-16">
+    <>
+      <SEOHead 
+        title="Boutique | Champignons Gourmets Frais et Séchés"
+        description="Explorez notre sélection complète de champignons gourmets. Pleurotes fraîches, mélange forestier séché, duxelles truffée et plus. Livraison au Québec."
+        url="https://www.sporesexpert.ca/boutique"
+      />
+      <div className="pt-24 pb-16">
       {/* Header */}
       <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4">
@@ -70,7 +77,8 @@ const Boutique = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 
