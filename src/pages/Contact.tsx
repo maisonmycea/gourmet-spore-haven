@@ -22,17 +22,17 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Adresse',
-    details: ['123 Rue des Champignons', '75001 Paris, France'],
+    details: ['2022 Chemin de Ste Lucie', 'Sainte-Lucie-des-Laurentides, QC J0T 2J0'],
   },
   {
     icon: Phone,
     title: 'Téléphone',
-    details: ['+33 1 23 45 67 89'],
+    details: ['819-327-6786'],
   },
   {
     icon: Mail,
     title: 'Email',
-    details: ['contact@spores-expert.fr'],
+    details: ['info@sporesexpert.ca'],
   },
   {
     icon: Clock,

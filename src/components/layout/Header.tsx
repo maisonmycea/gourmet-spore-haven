@@ -55,18 +55,16 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-3 group">
             <motion.div
-              whileHover={{ rotate: 15 }}
-              className={cn(
-                "w-10 h-10 rounded-full flex items-center justify-center transition-colors",
-                isScrolled ? "bg-primary" : "bg-white"
-              )}
+              whileHover={{ rotate: 5, scale: 1.05 }}
+              className="w-12 h-12"
             >
-              <span className={cn(
-                "font-serif text-xl transition-colors",
-                isScrolled ? "text-primary-foreground" : "text-stone-800"
-              )}>S</span>
+              <img 
+                src="/logo.png" 
+                alt="Spores Expert" 
+                className="w-full h-full object-contain"
+              />
             </motion.div>
             <span className={cn(
               "font-serif text-2xl font-semibold transition-colors",

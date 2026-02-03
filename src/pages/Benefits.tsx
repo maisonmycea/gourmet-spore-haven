@@ -4,6 +4,8 @@ import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
 import lionsMane from '@/assets/mushroom-lions-mane.jpg';
 import yellowOyster from '@/assets/mushroom-yellow-oyster.jpg';
+import kingOyster from '@/assets/mushroom-king-oyster.jpg';
+import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -77,6 +79,18 @@ const mushrooms = [
     image: yellowOyster,
     benefits: ['Riche en potassium', 'Vitamines B', 'Santé cardiaque'],
     uses: 'Omelettes, sautés au beurre',
+  },
+  {
+    name: 'Pleurote Royale',
+    image: kingOyster,
+    benefits: ['Texture charnue', 'Riche en ergothionéine', 'Source de vitamine D'],
+    uses: 'Grillé en médaillons, rôti au four, remplaçant de Saint-Jacques',
+  },
+  {
+    name: 'Poulet des Bois',
+    image: chickenWoods,
+    benefits: ['Alternative au poulet', 'Riche en protéines', 'Propriétés antimicrobiennes'],
+    uses: 'Nuggets, ragoûts, tacos, currys',
   },
 ];
 
@@ -175,7 +189,7 @@ const Benefits = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {mushrooms.map((mushroom) => (
               <motion.div
