@@ -32,7 +32,7 @@ export const Footer = () => {
               <img 
                 src="/logo.png" 
                 alt="Spores Expert" 
-                className="w-12 h-12 object-contain"
+                className="w-14 h-14 object-contain drop-shadow-lg"
               />
               <span className="font-serif text-2xl font-semibold">
                 Spores Expert

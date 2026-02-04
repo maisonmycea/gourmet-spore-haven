@@ -58,17 +58,17 @@ export const Header = () => {
           <Link to="/" className="flex items-center gap-3 group">
             <motion.div
               whileHover={{ rotate: 5, scale: 1.05 }}
-              className="w-12 h-12"
+              className="w-14 h-14"
             >
               <img 
                 src="/logo.png" 
                 alt="Spores Expert" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-lg"
               />
             </motion.div>
             <span className={cn(
               "font-serif text-2xl font-semibold transition-colors",
-              isScrolled ? "text-foreground group-hover:text-accent" : "text-white group-hover:text-white/80"
+              isScrolled ? "text-foreground group-hover:text-accent" : "text-white group-hover:text-white/80 drop-shadow-md"
             )}>
               Spores Expert
             </span>
