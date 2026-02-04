@@ -250,7 +250,7 @@ export const products: Product[] = [
     category: 'transformed',
     price: 24.90,
     unit: 'piece',
-    image: '/mushroom-forest-blend.jpg',
+    image: '/duxelles-truffee.jpg',
     description: 'Une préparation raffinée de champignons sauvages sublimée par la truffe d\'été. Un condiment d\'exception pour vos créations gastronomiques.',
     benefits: [
       'Saveur truffe intense',
@@ -284,7 +284,7 @@ export const products: Product[] = [
     category: 'transformed',
     price: 16.90,
     unit: 'piece',
-    image: '/mushroom-forest-blend.jpg',
+    image: '/marinade-forestiere.jpg',
     description: 'Un mélange aromatique de champignons séchés, sucre d\'érable et huile d\'olive. Parfait pour mariner viandes, légumes et tofu.',
     benefits: [
       'Saveur érable unique',
