@@ -8,12 +8,22 @@ import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
 import yellowOyster from '@/assets/mushroom-yellow-oyster.jpg';
 import lionsMane from '@/assets/mushroom-lions-mane.jpg';
+import kingOyster from '@/assets/mushroom-king-oyster.jpg';
+import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
+import forestBlend from '@/assets/mushroom-forest-blend.jpg';
+import duxelles from '@/assets/duxelles-truffee.jpg';
+import marinade from '@/assets/marinade-forestiere.jpg';
 
 const imageMap: Record<string, string> = {
   '/mushroom-blue-oyster.jpg': blueOyster,
   '/mushroom-pink-oyster.jpg': pinkOyster,
   '/mushroom-yellow-oyster.jpg': yellowOyster,
   '/mushroom-lions-mane.jpg': lionsMane,
+  '/mushroom-king-oyster.jpg': kingOyster,
+  '/mushroom-chicken-woods.jpg': chickenWoods,
+  '/mushroom-forest-blend.jpg': forestBlend,
+  '/duxelles-truffee.jpg': duxelles,
+  '/marinade-forestiere.jpg': marinade,
 };
 
 interface ProductCardProps {
@@ -94,7 +104,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <div className="flex items-center justify-between">
             <div>
               <span className="font-serif text-xl font-bold text-foreground">
-                {product.price.toFixed(2)} €
+                {product.price.toFixed(2)} $
               </span>
               <span className="text-muted-foreground text-sm ml-1">
                 / {product.unit}
@@ -102,9 +112,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </div>
             
             {product.inStock ? (
-              <span className="text-green-600 text-xs font-medium">En stock</span>
+              <span className="text-accent text-xs font-medium">En stock</span>
             ) : (
-              <span className="text-red-600 text-xs font-medium">Rupture</span>
+              <span className="text-destructive text-xs font-medium">Rupture</span>
             )}
           </div>
         </div>

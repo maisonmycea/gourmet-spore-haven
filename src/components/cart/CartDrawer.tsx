@@ -1,11 +1,79 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { X, Minus, Plus, Trash2, ShoppingBag, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
+import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
+import yellowOyster from '@/assets/mushroom-yellow-oyster.jpg';
+import lionsMane from '@/assets/mushroom-lions-mane.jpg';
+import kingOyster from '@/assets/mushroom-king-oyster.jpg';
+import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
+import forestBlend from '@/assets/mushroom-forest-blend.jpg';
+import duxelles from '@/assets/duxelles-truffee.jpg';
+import marinade from '@/assets/marinade-forestiere.jpg';
+
+const imageMap: Record<string, string> = {
+  '/mushroom-blue-oyster.jpg': blueOyster,
+  '/mushroom-pink-oyster.jpg': pinkOyster,
+  '/mushroom-yellow-oyster.jpg': yellowOyster,
+  '/mushroom-lions-mane.jpg': lionsMane,
+  '/mushroom-king-oyster.jpg': kingOyster,
+  '/mushroom-chicken-woods.jpg': chickenWoods,
+  '/mushroom-forest-blend.jpg': forestBlend,
+  '/duxelles-truffee.jpg': duxelles,
+  '/marinade-forestiere.jpg': marinade,
+};
 
 export const CartDrawer = () => {
   const { state, closeCart, removeFromCart, updateQuantity, totalItems, totalPrice } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCheckout = async () => {
+    setIsLoading(true);
+    
+    try {
+      const items = state.items.map((item) => ({
+        id: item.product.id,
+        name: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity,
+        unit: item.product.unit,
+        image: item.product.image,
+      }));
+
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: {
+          items,
+          successUrl: `${window.location.origin}/commande-confirmee`,
+          cancelUrl: `${window.location.origin}/boutique`,
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast({
+        title: "Erreur de paiement",
+        description: "Une erreur s'est produite lors de la création de votre commande. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -74,7 +142,7 @@ export const CartDrawer = () => {
                     >
                       <div className="w-20 h-20 bg-muted rounded-lg overflow-hidden flex-shrink-0">
                         <img
-                          src={item.product.image}
+                          src={imageMap[item.product.image] || item.product.image}
                           alt={item.product.name}
                           className="w-full h-full object-cover"
                         />
@@ -84,7 +152,7 @@ export const CartDrawer = () => {
                           {item.product.name}
                         </h4>
                         <p className="text-muted-foreground text-xs mt-1">
-                          {item.product.price.toFixed(2)} € / {item.product.unit}
+                          {item.product.price.toFixed(2)} $ / {item.product.unit}
                         </p>
                         <div className="flex items-center justify-between mt-3">
                           <div className="flex items-center gap-2">
@@ -134,14 +202,27 @@ export const CartDrawer = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Sous-total</span>
                   <span className="font-serif text-xl font-semibold">
-                    {totalPrice.toFixed(2)} €
+                    {totalPrice.toFixed(2)} $
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Frais de livraison calculés à l'étape suivante
                 </p>
-                <Button variant="hero" size="lg" className="w-full">
-                  Passer commande
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={handleCheckout}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Chargement...
+                    </>
+                  ) : (
+                    'Passer commande'
+                  )}
                 </Button>
                 <Button
                   variant="outline"
