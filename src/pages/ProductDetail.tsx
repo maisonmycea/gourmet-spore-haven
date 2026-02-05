@@ -9,12 +9,22 @@ import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
 import yellowOyster from '@/assets/mushroom-yellow-oyster.jpg';
 import lionsMane from '@/assets/mushroom-lions-mane.jpg';
+import kingOyster from '@/assets/mushroom-king-oyster.jpg';
+import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
+import forestBlend from '@/assets/mushroom-forest-blend.jpg';
+import duxelles from '@/assets/duxelles-truffee.jpg';
+import marinade from '@/assets/marinade-forestiere.jpg';
 
 const imageMap: Record<string, string> = {
   '/mushroom-blue-oyster.jpg': blueOyster,
   '/mushroom-pink-oyster.jpg': pinkOyster,
   '/mushroom-yellow-oyster.jpg': yellowOyster,
   '/mushroom-lions-mane.jpg': lionsMane,
+  '/mushroom-king-oyster.jpg': kingOyster,
+  '/mushroom-chicken-woods.jpg': chickenWoods,
+  '/mushroom-forest-blend.jpg': forestBlend,
+  '/duxelles-truffee.jpg': duxelles,
+  '/marinade-forestiere.jpg': marinade,
 };
 
 const fadeInUp = {
@@ -102,7 +112,7 @@ const ProductDetail = () => {
             <div className="p-6 bg-card rounded-2xl border border-border space-y-6">
               <div className="flex items-end gap-2">
                 <span className="font-serif text-4xl font-bold text-foreground">
-                  {product.price.toFixed(2)} €
+                  {product.price.toFixed(2)} $
                 </span>
                 <span className="text-muted-foreground text-lg mb-1">
                   / {product.unit}
@@ -140,12 +150,12 @@ const ProductDetail = () => {
               </div>
 
               {product.inStock ? (
-                <p className="flex items-center gap-2 text-green-600 text-sm">
+                <p className="flex items-center gap-2 text-accent text-sm">
                   <Check className="w-4 h-4" />
                   En stock - Expédition sous 24h
                 </p>
               ) : (
-                <p className="text-red-600 text-sm">Actuellement en rupture de stock</p>
+                <p className="text-destructive text-sm">Actuellement en rupture de stock</p>
               )}
             </div>
 

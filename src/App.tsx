@@ -14,6 +14,7 @@ import Benefits from "./pages/Benefits";
 import Recipes from "./pages/Recipes";
 import Contact from "./pages/Contact";
 import CategoryPage from "./pages/CategoryPage";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
                 <Route path="/recettes" element={<Recipes />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/champignons/:category" element={<CategoryPage />} />
+                <Route path="/commande-confirmee" element={<CheckoutSuccess />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Layout>
