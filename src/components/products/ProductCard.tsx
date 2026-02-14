@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
@@ -30,6 +30,12 @@ interface ProductCardProps {
   product: Product;
 }
 
+const categoryLabels: Record<string, string> = {
+  fresh: 'Frais',
+  dried: 'Séché',
+  transformed: 'Transformé',
+};
+
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart, openCart } = useCart();
 
@@ -41,80 +47,52 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const imageSrc = imageMap[product.image] || product.image;
 
-  const categoryColors: Record<string, string> = {
-    fresh: 'bg-green-100 text-green-800',
-    dried: 'bg-amber-100 text-amber-800',
-    transformed: 'bg-blue-100 text-blue-800',
-  };
-
-  const categoryLabels: Record<string, string> = {
-    fresh: 'Frais',
-    dried: 'Séché',
-    transformed: 'Transformé',
-  };
-
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-medium transition-all duration-300"
+      whileHover={{ y: -3 }}
+      className="group bg-card border border-border overflow-hidden hover:border-accent/30 transition-all duration-300"
     >
       <Link to={`/produit/${product.id}`}>
-        {/* Image */}
-        <div className="relative aspect-square overflow-hidden bg-muted">
+        <div className="relative aspect-square overflow-hidden">
           <img
             src={imageSrc}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
           
-          {/* Category Badge */}
-          <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium ${categoryColors[product.category]}`}>
+          <span className="absolute top-4 left-4 px-2 py-0.5 bg-background/90 backdrop-blur-sm text-[10px] tracking-[0.15em] uppercase text-foreground">
             {categoryLabels[product.category]}
           </span>
 
-          {/* Wishlist Button */}
-          <button className="absolute top-4 right-4 w-8 h-8 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background">
-            <Heart className="w-4 h-4 text-foreground" />
-          </button>
-
-          {/* Quick Add */}
           <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button
-              variant="hero"
-              size="sm"
-              className="w-full"
-              onClick={handleAddToCart}
-            >
+            <Button variant="hero" size="sm" className="w-full" onClick={handleAddToCart}>
               <ShoppingCart className="w-4 h-4" />
-              Ajouter au panier
+              Ajouter
             </Button>
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-5">
-          <h3 className="font-serif text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+          <h3 className="font-serif text-lg text-foreground mb-2 group-hover:text-accent transition-colors">
             {product.name}
           </h3>
           
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+          <p className="text-muted-foreground text-xs mb-4 line-clamp-2">
             {product.description}
           </p>
 
           <div className="flex items-center justify-between">
             <div>
-              <span className="font-serif text-xl font-bold text-foreground">
+              <span className="font-serif text-lg text-foreground">
                 {product.price.toFixed(2)} $
               </span>
-              <span className="text-muted-foreground text-sm ml-1">
-                / {product.unit}
-              </span>
+              <span className="text-muted-foreground text-xs ml-1">/ {product.unit}</span>
             </div>
             
             {product.inStock ? (
-              <span className="text-accent text-xs font-medium">En stock</span>
+              <span className="text-accent text-[10px] tracking-[0.1em] uppercase">En stock</span>
             ) : (
-              <span className="text-destructive text-xs font-medium">Rupture</span>
+              <span className="text-destructive text-[10px] tracking-[0.1em] uppercase">Rupture</span>
             )}
           </div>
         </div>

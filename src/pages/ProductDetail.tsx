@@ -97,7 +97,7 @@ const ProductDetail = () => {
             className="space-y-8"
           >
             <div>
-              <span className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-2 py-0.5 border border-border text-[10px] tracking-[0.15em] uppercase text-foreground mb-4">
                 {product.category === 'fresh' ? 'Frais' : product.category === 'dried' ? 'Séché' : 'Transformé'}
               </span>
               <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
