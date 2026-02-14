@@ -9,32 +9,29 @@ interface SEOHeadProps {
 }
 
 export const SEOHead = ({
-  title = 'Spores Expert | Champignons Gourmets Premium',
-  description = 'Culture artisanale et vente de champignons gourmets premium. Pleurotes, Crinière de Lion, Poulet des Bois. Qualité exceptionnelle, fraîcheur garantie.',
+  title = 'MYCÉA | Culture Fine du Vivant',
+  description = 'Maison de culture mycélienne boréale. Champignons gourmets d\'exception cultivés avec précision dans les Laurentides.',
   image = '/og-image.jpg',
-  url = 'https://www.sporesexpert.ca',
+  url = 'https://www.mycea.ca',
   type = 'website'
 }: SEOHeadProps) => {
-  const fullTitle = title.includes('Spores Expert') ? title : `${title} | Spores Expert`;
+  const fullTitle = title.includes('MYCÉA') ? title : `${title} | MYCÉA`;
   
   return (
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       
-      {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
       
-      {/* Twitter */}
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       
-      {/* Canonical */}
       <link rel="canonical" href={url} />
     </Helmet>
   );

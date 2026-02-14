@@ -15,12 +15,11 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Premium variants for Spores Expert
-        hero: "bg-primary text-primary-foreground font-semibold shadow-medium hover:shadow-strong hover:scale-[1.02] active:scale-[0.98]",
-        heroOutline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold",
-        accent: "bg-accent text-accent-foreground shadow-glow hover:shadow-strong hover:scale-[1.02]",
-        premium: "bg-gradient-hero text-primary-foreground font-semibold shadow-strong hover:shadow-glow hover:scale-[1.02] active:scale-[0.98]",
-        organic: "bg-mushroom-cream text-mushroom-brown border border-mushroom-brown/20 hover:bg-mushroom-brown hover:text-mushroom-cream font-medium",
+        // MYCÉA premium variants
+        hero: "bg-primary text-primary-foreground font-medium tracking-wide shadow-medium hover:shadow-strong hover:scale-[1.01] active:scale-[0.99]",
+        heroOutline: "border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-medium tracking-wide",
+        accent: "bg-accent text-accent-foreground font-medium tracking-wide shadow-glow hover:shadow-strong hover:scale-[1.01]",
+        premium: "bg-gradient-hero text-primary-foreground font-medium tracking-wide shadow-strong hover:shadow-glow hover:scale-[1.01] active:scale-[0.99]",
       },
       size: {
         default: "h-10 px-4 py-2",

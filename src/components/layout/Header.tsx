@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingBag, User, ChevronDown } from 'lucide-react';
+import { Menu, X, ShoppingBag, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
@@ -9,16 +9,16 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/', label: 'Accueil' },
   {
-    label: 'Nos Champignons',
+    label: 'Cultures',
     children: [
       { href: '/champignons/frais', label: 'Frais' },
       { href: '/champignons/seches', label: 'Séchés' },
       { href: '/champignons/transformes', label: 'Transformés' },
     ],
   },
-  { href: '/bienfaits', label: 'Bienfaits & Usages' },
+  { href: '/bienfaits', label: 'Bienfaits' },
   { href: '/recettes', label: 'Recettes' },
-  { href: '/a-propos', label: 'À Propos' },
+  { href: '/a-propos', label: 'La Maison' },
   { href: '/boutique', label: 'Boutique' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -48,34 +48,24 @@ export const Header = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-soft'
-          : 'bg-black/30 backdrop-blur-sm'
+          ? 'bg-background/95 backdrop-blur-md shadow-soft border-b border-border/50'
+          : 'bg-black/20 backdrop-blur-sm'
       )}
     >
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 5, scale: 1.05 }}
-              className="w-14 h-14"
-            >
-              <img 
-                src="/logo.png" 
-                alt="Spores Expert" 
-                className="w-full h-full object-contain drop-shadow-lg"
-              />
-            </motion.div>
+          {/* Logo — Typographic */}
+          <Link to="/" className="flex items-center gap-0 group">
             <span className={cn(
-              "font-serif text-2xl font-semibold transition-colors",
-              isScrolled ? "text-foreground group-hover:text-accent" : "text-white group-hover:text-white/80 drop-shadow-md"
+              "font-serif text-2xl tracking-[0.35em] uppercase transition-colors",
+              isScrolled ? "text-foreground" : "text-white drop-shadow-md"
             )}>
-              Spores Expert
+              M Y C É A
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0">
             {navLinks.map((link) => (
               <div
                 key={link.label}
@@ -86,27 +76,27 @@ export const Header = () => {
                 {link.children ? (
                   <button
                     className={cn(
-                      'flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg',
+                      'flex items-center gap-1 px-4 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-colors',
                       isScrolled 
-                        ? 'text-foreground/80 hover:text-foreground hover:bg-secondary/50'
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                        ? 'text-foreground/70 hover:text-foreground'
+                        : 'text-white/80 hover:text-white'
                     )}
                   >
                     {link.label}
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-3 h-3" />
                   </button>
                 ) : (
                   <Link
                     to={link.href!}
                     className={cn(
-                      'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+                      'px-4 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-colors',
                       isScrolled
                         ? location.pathname === link.href
-                          ? 'text-accent bg-accent/10'
-                          : 'text-foreground/80 hover:text-foreground hover:bg-secondary/50'
+                          ? 'text-accent'
+                          : 'text-foreground/70 hover:text-foreground'
                         : location.pathname === link.href
-                          ? 'text-white bg-white/20'
-                          : 'text-white/90 hover:text-white hover:bg-white/10'
+                          ? 'text-white'
+                          : 'text-white/80 hover:text-white'
                     )}
                   >
                     {link.label}
@@ -117,17 +107,17 @@ export const Header = () => {
                 <AnimatePresence>
                   {link.children && openDropdown === link.label && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-1 bg-card rounded-xl shadow-medium border border-border overflow-hidden min-w-48"
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1 bg-card border border-border shadow-medium min-w-48"
                     >
                       {link.children.map((child) => (
                         <Link
                           key={child.href}
                           to={child.href}
-                          className="block px-4 py-3 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-colors"
+                          className="block px-5 py-3 text-xs tracking-[0.1em] uppercase text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -140,17 +130,7 @@ export const Header = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className={cn(
-                "hidden sm:flex",
-                !isScrolled && "text-white hover:text-white hover:bg-white/10"
-              )}
-            >
-              <User className="w-5 h-5" />
-            </Button>
+          <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
@@ -165,7 +145,7 @@ export const Header = () => {
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-accent-foreground text-xs font-bold rounded-full flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] font-bold rounded-full flex items-center justify-center"
                 >
                   {totalItems}
                 </motion.span>
@@ -195,7 +175,7 @@ export const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-background border-t border-border"
           >
-            <div className="container mx-auto px-4 py-4 space-y-2">
+            <div className="container mx-auto px-4 py-6 space-y-1">
               {navLinks.map((link) => (
                 <div key={link.label}>
                   {link.children ? (
@@ -204,12 +184,12 @@ export const Header = () => {
                         onClick={() =>
                           setOpenDropdown(openDropdown === link.label ? null : link.label)
                         }
-                        className="flex items-center justify-between w-full px-4 py-3 text-foreground font-medium rounded-lg hover:bg-secondary/50"
+                        className="flex items-center justify-between w-full px-4 py-3 text-xs tracking-[0.15em] uppercase text-foreground font-medium"
                       >
                         {link.label}
                         <ChevronDown
                           className={cn(
-                            'w-4 h-4 transition-transform',
+                            'w-3 h-3 transition-transform',
                             openDropdown === link.label && 'rotate-180'
                           )}
                         />
@@ -226,7 +206,7 @@ export const Header = () => {
                               <Link
                                 key={child.href}
                                 to={child.href}
-                                className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary/30"
+                                className="block px-4 py-2 text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground"
                               >
                                 {child.label}
                               </Link>
@@ -239,10 +219,10 @@ export const Header = () => {
                     <Link
                       to={link.href!}
                       className={cn(
-                        'block px-4 py-3 font-medium rounded-lg transition-colors',
+                        'block px-4 py-3 text-xs tracking-[0.15em] uppercase font-medium transition-colors',
                         location.pathname === link.href
-                          ? 'text-accent bg-accent/10'
-                          : 'text-foreground hover:bg-secondary/50'
+                          ? 'text-accent'
+                          : 'text-foreground hover:text-accent'
                       )}
                     >
                       {link.label}
