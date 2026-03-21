@@ -70,6 +70,7 @@ export const Header = () => {
               <Link
                 key={link.label}
                 to={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
                   'text-[11px] tracking-[0.2em] uppercase font-medium transition-colors duration-300',
                   isScrolled
