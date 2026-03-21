@@ -112,6 +112,7 @@ export const Header = () => {
                 <Link
                   key={link.label}
                   to={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block px-4 py-3 text-xs tracking-[0.2em] uppercase text-foreground/70 hover:text-foreground transition-colors"
                 >
                   {link.label}
