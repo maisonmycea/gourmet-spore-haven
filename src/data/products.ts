@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'forest-blend' | 'duxelles' | 'marinade';
+  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'maitake' | 'armillaire' | 'forest-blend' | 'duxelles' | 'marinade';
   category: 'fresh' | 'dried' | 'transformed';
   price: number;
   unit: 'kg' | '100g' | 'piece';
@@ -184,6 +184,90 @@ export const products: Product[] = [
       protein: '4.2g/100g',
       fiber: '3.1g/100g',
       vitamins: ['B2', 'B3', 'C', 'D']
+    },
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'foliotte-fresh',
+    name: 'Foliotte Fraîche',
+    variety: 'foliotte',
+    category: 'fresh',
+    price: 32.90,
+    unit: 'kg',
+    image: '/mushroom-foliotte.jpg',
+    description: 'Champignon délicat aux notes boisées et légèrement noisettées. Texture fine, idéale pour les préparations à la minute et les garnitures gastronomiques.',
+    benefits: [
+      'Texture fine et délicate',
+      'Notes boisées et noisettées',
+      'Riche en vitamines B',
+      'Faible en calories'
+    ],
+    culinaryTips: [
+      'Parfaite pour les préparations à la minute',
+      'Idéale en garniture gastronomique',
+      'Excellente sautée au beurre noisette'
+    ],
+    nutritionalInfo: {
+      protein: '3.0g/100g',
+      fiber: '2.2g/100g',
+      vitamins: ['B1', 'B2', 'B3', 'D']
+    },
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'maitake-fresh',
+    name: 'Maitake Frais',
+    variety: 'maitake',
+    category: 'fresh',
+    price: 45.90,
+    unit: 'kg',
+    image: '/mushroom-maitake.jpg',
+    description: 'Surnommé "la poule des bois", le maitake offre une complexité aromatique rare, des notes terreuses et fumées, et une texture feuilletée unique. Très recherché pour ses propriétés fonctionnelles et son profil gustatif exceptionnel.',
+    benefits: [
+      'Complexité aromatique rare',
+      'Propriétés fonctionnelles recherchées',
+      'Texture feuilletée unique',
+      'Riche en bêta-glucanes'
+    ],
+    culinaryTips: [
+      'Rôtir entier pour une présentation spectaculaire',
+      'Parfait en tempura ou grillé',
+      'Sublime dans un bouillon dashi'
+    ],
+    nutritionalInfo: {
+      protein: '3.5g/100g',
+      fiber: '2.7g/100g',
+      vitamins: ['B2', 'B3', 'D', 'E']
+    },
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 'armillaire-fresh',
+    name: 'Armillaire Miel Frais',
+    variety: 'armillaire',
+    category: 'fresh',
+    price: 48.90,
+    unit: 'kg',
+    image: '/mushroom-armillaire.jpg',
+    description: 'L\'une des variétés les plus rares en culture contrôlée. Saveur douce et légèrement sucrée, texture ferme. Une curiosité gastronomique réservée aux tables les plus audacieuses.',
+    benefits: [
+      'Variété rare en culture contrôlée',
+      'Saveur douce et sucrée',
+      'Texture ferme remarquable',
+      'Curiosité gastronomique d\'exception'
+    ],
+    culinaryTips: [
+      'Poêlée simplement pour révéler sa douceur',
+      'En accompagnement de viandes blanches',
+      'Sublime en velouté raffiné'
+    ],
+    nutritionalInfo: {
+      protein: '2.8g/100g',
+      fiber: '2.0g/100g',
+      vitamins: ['B1', 'B2', 'D']
     },
     inStock: true,
     featured: true
