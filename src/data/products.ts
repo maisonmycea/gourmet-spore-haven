@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'forest-blend' | 'duxelles' | 'marinade';
+  variety: 'blue-oyster' | 'pink-oyster' | 'yellow-oyster' | 'lions-mane' | 'foliotte' | 'king-oyster' | 'chicken-woods' | 'maitake' | 'armillaire' | 'forest-blend' | 'duxelles' | 'marinade';
   category: 'fresh' | 'dried' | 'transformed';
   price: number;
   unit: 'kg' | '100g' | 'piece';
