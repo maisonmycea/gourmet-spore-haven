@@ -7,8 +7,9 @@ import forestImage from '@/assets/forest-atmosphere.jpg';
 import blueOyster from '@/assets/mushroom-blue-oyster.jpg';
 import pinkOyster from '@/assets/mushroom-pink-oyster.jpg';
 import kingOyster from '@/assets/mushroom-king-oyster.jpg';
-import lionsMane from '@/assets/mushroom-lions-mane.jpg';
-import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
+import foliotte from '@/assets/mushroom-foliotte.jpg';
+import maitake from '@/assets/mushroom-maitake.jpg';
+import armillaire from '@/assets/mushroom-armillaire.jpg';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 24 },
@@ -37,14 +38,36 @@ const cultures = [
     image: kingOyster,
   },
   {
-    name: 'Crinière de lion',
-    description: 'Texture de homard, bienfaits cognitifs reconnus. Un trésor culinaire et fonctionnel.',
-    image: lionsMane,
+    name: 'Foliotte',
+    description: 'Champignon délicat aux notes boisées et légèrement noisettées. Texture fine, idéale pour les préparations à la minute et les garnitures gastronomiques.',
+    image: foliotte,
   },
   {
-    name: 'Poulet des bois',
-    description: 'Complexité forestière. Umami naturel. Une variété recherchée par les cuisines gastronomiques.',
-    image: chickenWoods,
+    name: 'Maitake',
+    latin: 'Grifola frondosa',
+    description: 'Surnommé « la poule des bois », le maitake offre une complexité aromatique rare, des notes terreuses et fumées, et une texture feuilletée unique. Très recherché pour ses propriétés fonctionnelles.',
+    image: maitake,
+  },
+  {
+    name: 'Armillaire miel',
+    latin: 'Armillaria mellea',
+    description: 'L\'une des variétés les plus rares en culture contrôlée. Saveur douce et légèrement sucrée, texture ferme. Une curiosité gastronomique réservée aux tables les plus audacieuses.',
+    image: armillaire,
+  },
+];
+
+const atelierProducts = [
+  {
+    name: 'Huile infusée au maitake',
+    description: 'Extraction à froid. Profil aromatique intense. Pour sublimer un carpaccio, un risotto ou une viande blanche.',
+  },
+  {
+    name: 'Condiment armillaire & fleur de sel',
+    description: 'Finition umami. Quelques grammes transforment une assiette.',
+  },
+  {
+    name: 'Poudre de pleurotes séchées',
+    description: 'Assaisonnement concentré. Usage professionnel ou créatif à la maison.',
   },
 ];
 
@@ -119,7 +142,6 @@ const Index = () => {
             </motion.div>
           </div>
 
-          {/* Scroll line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -207,7 +229,10 @@ const Index = () => {
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                     />
                   </div>
-                  <h3 className="font-serif text-xl md:text-2xl text-foreground mb-3">{culture.name}</h3>
+                  <h3 className="font-serif text-xl md:text-2xl text-foreground mb-1">{culture.name}</h3>
+                  {'latin' in culture && culture.latin && (
+                    <p className="text-muted-foreground/50 text-xs italic mb-3">{culture.latin}</p>
+                  )}
                   <p className="text-muted-foreground text-sm leading-relaxed">{culture.description}</p>
                 </motion.div>
               ))}
@@ -230,6 +255,57 @@ const Index = () => {
           </div>
         </section>
 
+        {/* ═══════════ L'ATELIER — PRODUITS DÉRIVÉS ═══════════ */}
+        <section className="py-32 lg:py-40">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+              className="mb-20"
+            >
+              <motion.p variants={fadeIn} className="text-[11px] tracking-[0.3em] uppercase text-accent mb-4 text-center">
+                L'Atelier
+              </motion.p>
+              <motion.h2 variants={fadeIn} className="font-serif text-3xl md:text-5xl font-normal text-foreground text-center mb-8">
+                Produits dérivés
+              </motion.h2>
+              <motion.p variants={fadeIn} className="text-muted-foreground text-base md:text-lg leading-relaxed text-center max-w-2xl mx-auto">
+                Au-delà du champignon frais, Maison MYCÉA développe une gamme de produits transformés d'exception. Huiles infusées, condiments, poudres aromatiques — chaque produit prolonge l'univers mycélien dans votre cuisine.
+              </motion.p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={stagger}
+              className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            >
+              {atelierProducts.map((product) => (
+                <motion.div
+                  key={product.name}
+                  variants={fadeIn}
+                  className="border border-border p-8 hover:border-accent/30 transition-colors duration-300"
+                >
+                  <h3 className="font-serif text-lg text-foreground mb-4">{product.name}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{product.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mt-14 text-muted-foreground/50 text-xs tracking-[0.1em] uppercase"
+            >
+              Disponibilité sur demande — Réservé aux professionnels et épiceries fines
+            </motion.p>
+          </div>
+        </section>
+
         {/* ═══════════ POUR LES PROFESSIONNELS ═══════════ */}
         <section className="py-32 lg:py-40 bg-primary text-primary-foreground">
           <div className="container mx-auto px-6 lg:px-12">
@@ -247,7 +323,7 @@ const Index = () => {
                 Partenaire des cuisines exigeantes
               </motion.h2>
               <motion.p variants={fadeIn} className="text-primary-foreground/50 text-base md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-16">
-                MYCÉA accompagne les professionnels de la gastronomie avec un approvisionnement fiable, une qualité constante et une attention absolue portée au produit. Nous privilégions des relations directes avec les chefs et les acheteurs afin d'assurer une expérience simple, fluide et personnalisée.
+                Maison MYCÉA accompagne les professionnels de la gastronomie avec un approvisionnement fiable, une qualité constante et une attention absolue portée au produit. Nous privilégions des relations directes avec les chefs et les acheteurs afin d'assurer une expérience simple, fluide et personnalisée.
               </motion.p>
 
               <motion.div variants={fadeIn} className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
