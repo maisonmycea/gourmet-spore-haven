@@ -17,6 +17,21 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = useCallback((e: React.MouseEvent, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const id = href.slice(2);
+      if (location.pathname === '/') {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/');
+        setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+      setIsMobileMenuOpen(false);
+    }
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
