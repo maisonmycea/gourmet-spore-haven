@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/boutique', label: 'Cultures' },
+  { href: '/#atelier', label: 'L\'Atelier' },
   { href: '/a-propos', label: 'Maison' },
   { href: '/contact', label: 'Approvisionnement' },
   { href: '/contact', label: 'Contact' },
@@ -16,6 +17,21 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavClick = useCallback((e: React.MouseEvent, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const id = href.slice(2);
+      if (location.pathname === '/') {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/');
+        setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+      setIsMobileMenuOpen(false);
+    }
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -54,6 +70,7 @@ export const Header = () => {
               <Link
                 key={link.label}
                 to={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
                   'text-[11px] tracking-[0.2em] uppercase font-medium transition-colors duration-300',
                   isScrolled
@@ -95,6 +112,7 @@ export const Header = () => {
                 <Link
                   key={link.label}
                   to={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block px-4 py-3 text-xs tracking-[0.2em] uppercase text-foreground/70 hover:text-foreground transition-colors"
                 >
                   {link.label}
