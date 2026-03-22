@@ -70,12 +70,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {categoryLabels[product.category]}
           </span>
 
-          <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button variant="hero" size="sm" className="w-full" onClick={handleAddToCart}>
-              <ShoppingCart className="w-4 h-4" />
-              Ajouter
-            </Button>
-          </div>
+          {product.category !== 'fresh' && (
+            <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Button variant="hero" size="sm" className="w-full" onClick={handleAddToCart}>
+                <ShoppingCart className="w-4 h-4" />
+                Ajouter
+              </Button>
+            </div>
+          )}
         </div>
 
         <div className="p-5">
