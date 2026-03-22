@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/hooks/use-toast';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -23,10 +25,21 @@ const contactInfo = [
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke('submit-contact', { body: formData });
+      if (error) throw error;
+      toast({ title: 'Message envoyé avec succès !', description: 'Nous vous répondrons dans les plus brefs délais.' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      toast({ title: 'Erreur', description: "Impossible d'envoyer le message. Veuillez réessayer.", variant: 'destructive' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
