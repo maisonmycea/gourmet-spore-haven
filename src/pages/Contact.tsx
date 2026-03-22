@@ -161,9 +161,9 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button variant="hero" size="lg" type="submit">
-                    <Send className="w-4 h-4" />
-                    Envoyer
+                  <Button variant="hero" size="lg" type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    {isSubmitting ? 'Envoi…' : 'Envoyer'}
                   </Button>
                 </form>
               </motion.div>
