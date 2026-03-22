@@ -8,6 +8,7 @@ import { CartProvider } from "@/context/CartContext";
 import { Layout } from "@/components/layout/Layout";
 import Index from "./pages/Index";
 import Boutique from "./pages/Boutique";
+import Cultures from "./pages/Cultures";
 import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";
 import Benefits from "./pages/Benefits";
