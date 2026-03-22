@@ -41,6 +41,23 @@ const logStep = (step: string, details?: Record<string, unknown>) => {
   console.log(`[CREATE-CHECKOUT] ${step}${detailsStr}`);
 };
 
+// --- Server-authoritative product prices (CAD) ---
+const PRODUCT_PRICES: Record<string, number> = {
+  'blue-oyster-fresh': 24.90,
+  'pink-oyster-fresh': 28.90,
+  'yellow-oyster-fresh': 26.90,
+  'lions-mane-fresh': 42.90,
+  'king-oyster-fresh': 32.90,
+  'chicken-woods-fresh': 38.90,
+  'foliotte-fresh': 32.90,
+  'maitake-fresh': 45.90,
+  'armillaire-fresh': 48.90,
+  'forest-blend-dried': 12.90,
+  'mushroom-powder': 18.90,
+  'duxelles-truffee': 24.90,
+  'marinade-forestiere': 16.90,
+};
+
 // --- Input validation helpers ---
 function validateString(val: unknown, field: string, minLen: number, maxLen: number): string {
   if (typeof val !== "string") throw new Error(`${field} must be a string`);
@@ -63,7 +80,6 @@ function validateUrl(val: unknown, field: string): string {
     const url = new URL(s);
     if (url.protocol !== "https:" && url.protocol !== "http:")
       throw new Error(`${field} must use http(s)`);
-    // Only allow known domains
     const host = url.hostname;
     const allowed = host.endsWith(".lovable.app") || host === "localhost";
     if (!allowed) throw new Error(`${field} has disallowed domain`);
@@ -92,10 +108,13 @@ interface CartItem {
 function validateCartItem(raw: unknown, index: number): CartItem {
   if (typeof raw !== "object" || raw === null) throw new Error(`Item ${index} is invalid`);
   const obj = raw as Record<string, unknown>;
+  const id = validateString(obj.id, `items[${index}].id`, 1, 100);
+  const serverPrice = PRODUCT_PRICES[id];
+  if (!serverPrice) throw new Error(`Unknown product: ${id}`);
   return {
-    id: validateString(obj.id, `items[${index}].id`, 1, 100),
+    id,
     name: validateString(obj.name, `items[${index}].name`, 1, 200),
-    price: validateNumber(obj.price, `items[${index}].price`, 0.01, 10000),
+    price: serverPrice,
     quantity: validateNumber(obj.quantity, `items[${index}].quantity`, 1, 100, true),
     unit: validateString(obj.unit, `items[${index}].unit`, 1, 50),
     image: obj.image != null ? validateString(obj.image, `items[${index}].image`, 0, 500) : undefined,
