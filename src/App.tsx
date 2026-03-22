@@ -15,6 +15,7 @@ import Recipes from "./pages/Recipes";
 import Contact from "./pages/Contact";
 import CategoryPage from "./pages/CategoryPage";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import Atelier from "./pages/Atelier";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
