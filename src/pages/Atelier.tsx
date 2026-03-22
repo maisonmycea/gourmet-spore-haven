@@ -111,14 +111,7 @@ const Atelier = () => {
                       size="sm"
                       variant="outline"
                       className="text-xs tracking-[0.1em] uppercase"
-                      onClick={() =>
-                        addToCart({
-                          id: product.id,
-                          name: product.name,
-                          price: product.price,
-                          image: product.image,
-                        })
-                      }
+                      onClick={() => addToCart(product)}
                     >
                       Ajouter
                     </Button>
