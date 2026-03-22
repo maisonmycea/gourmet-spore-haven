@@ -25,6 +25,9 @@ const imageMap: Record<string, string> = {
   '/mushroom-king-oyster.jpg': kingOyster,
   '/mushroom-chicken-woods.jpg': chickenWoods,
   '/mushroom-forest-blend.jpg': forestBlend,
+  '/mushroom-foliotte.jpg': foliotte,
+  '/mushroom-maitake.jpg': maitake,
+  '/mushroom-armillaire.jpg': armillaire,
   '/duxelles-truffee.jpg': duxelles,
   '/marinade-forestiere.jpg': marinade,
 };
