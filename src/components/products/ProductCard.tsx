@@ -11,6 +11,9 @@ import lionsMane from '@/assets/mushroom-lions-mane.jpg';
 import kingOyster from '@/assets/mushroom-king-oyster.jpg';
 import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
 import forestBlend from '@/assets/mushroom-forest-blend.jpg';
+import foliotte from '@/assets/mushroom-foliotte.jpg';
+import maitake from '@/assets/mushroom-maitake.jpg';
+import armillaire from '@/assets/mushroom-armillaire.jpg';
 import duxelles from '@/assets/duxelles-truffee.jpg';
 import marinade from '@/assets/marinade-forestiere.jpg';
 
