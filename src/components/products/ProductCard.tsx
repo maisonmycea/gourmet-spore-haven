@@ -11,6 +11,9 @@ import lionsMane from '@/assets/mushroom-lions-mane.jpg';
 import kingOyster from '@/assets/mushroom-king-oyster.jpg';
 import chickenWoods from '@/assets/mushroom-chicken-woods.jpg';
 import forestBlend from '@/assets/mushroom-forest-blend.jpg';
+import foliotte from '@/assets/mushroom-foliotte.jpg';
+import maitake from '@/assets/mushroom-maitake.jpg';
+import armillaire from '@/assets/mushroom-armillaire.jpg';
 import duxelles from '@/assets/duxelles-truffee.jpg';
 import marinade from '@/assets/marinade-forestiere.jpg';
 
@@ -22,6 +25,9 @@ const imageMap: Record<string, string> = {
   '/mushroom-king-oyster.jpg': kingOyster,
   '/mushroom-chicken-woods.jpg': chickenWoods,
   '/mushroom-forest-blend.jpg': forestBlend,
+  '/mushroom-foliotte.jpg': foliotte,
+  '/mushroom-maitake.jpg': maitake,
+  '/mushroom-armillaire.jpg': armillaire,
   '/duxelles-truffee.jpg': duxelles,
   '/marinade-forestiere.jpg': marinade,
 };
@@ -64,12 +70,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {categoryLabels[product.category]}
           </span>
 
-          <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button variant="hero" size="sm" className="w-full" onClick={handleAddToCart}>
-              <ShoppingCart className="w-4 h-4" />
-              Ajouter
-            </Button>
-          </div>
+          {product.category !== 'fresh' && (
+            <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Button variant="hero" size="sm" className="w-full" onClick={handleAddToCart}>
+                <ShoppingCart className="w-4 h-4" />
+                Ajouter
+              </Button>
+            </div>
+          )}
         </div>
 
         <div className="p-5">
